@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "amazon_bot-executor",
+    "name": "amazon_bot",
+    "region": "us-west-2"
+  },
+  "api": {
+    "id": "py7nj1igd1",
+    "module": "bot"
+  }
+}
