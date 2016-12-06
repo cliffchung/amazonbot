@@ -1,5 +1,5 @@
 const BOT_BUILDER = require('claudia-bot-builder');
-const SLACK_TEMPLATE = require('claudia-bot-builder').slackTemplate;
+const SLACK_TEMPLATE = BOT_BUILDER.slackTemplate;
 
 const REF_TAG_CLIFF = "cliffchung-20";
 const REF_TAG_RICHARD = "tridium-20";
@@ -7,7 +7,7 @@ const SLACK_USERID_CLIFF="U0EE01SJF"
 const SLACK_USERID_RICHARD="U0EE2NT6K"
 const COMMAND = "/amz";
 const AMZN_LINK_REGEX = new RegExp(".*(\s)?(http(s)?:\/\/(.*amazon\..*\/|.*amazon\..*\/gp\/product\/.*|.*amazon\..*\/.*\/dp\/.*|.*amazon\..*\/dp\/.*|.*amazon\..*\/o\/ASIN\/.*|.*amazon\..*\/gp\/offer-listing\/.*|.*amazon\..*\/.*\/ASIN\/.*|.*amazon\..*\/gp\/product\/images\/.*|.*amazon\..*\/gp\/aw\/d\/.*|.*amazon\..*\/s\/.*|.*amazon\..*\/gp\/redirect.html.*|www\.amzn\.com\/.*|amzn\.com\/.*)B[0-9a-zA-Z]{9}\/?)");
-const USAGE = "USAGE: " + COMMAND + " [Amazon product link] [Referral tag to use (Optional - c || r) ]";
+const USAGE = "Usage: " + COMMAND + " [Amazon product link] [Referral tag to use (Optional - c || r)]";
 const REF_TAG_PREPEND = "?tag=";
 const VERIFICATION_TOKEN = "KhEwMI5xJs1Y9kKIfn63TrxZ";
 
@@ -65,12 +65,12 @@ module.exports = BOT_BUILDER(function (message) {
         var refTagToUse = getRefTagToUse(message);
         strippedLink = strippedLink + REF_TAG_PREPEND + refTagToUse;
 
-        var returnMessage = new SLACK_TEMPLATE(message.originalRequest.user_name 
+        var returnMessage = new SLACK_TEMPLATE(message.originalRequest.user_name
                 + " requested a link: " + strippedLink);
         return returnMessage
             .replaceOriginal(true) // replace the original message with the updated one
             .channelMessage(true) // announce it to the channel
-            .get()
+            .get();
     } else {
         return USAGE;
     }
