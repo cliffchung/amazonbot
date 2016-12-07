@@ -23,8 +23,6 @@ function getRefTagToUse(message) {
 
     var refTagToUse = "";
 
-    console.log("Split string " + splitString);
-
     if (splitString.length > 1) {
         var refTagArgument = splitString[1].toLowerCase();
 
@@ -107,10 +105,7 @@ api.intercept((event) => {
     }
 
     var refTagToUse = getRefTagToUse(message);
-    console.log(JSON.stringify(message));
-    console.log("RefTag: " + refTagToUse)
-
-        strippedLink = strippedLink + REF_TAG_PREPEND + refTagToUse;
+    strippedLink = strippedLink + REF_TAG_PREPEND + refTagToUse;
 
     var returnMessage = new SLACK_TEMPLATE("")
         .channelMessage(true) // announce it to the channel
